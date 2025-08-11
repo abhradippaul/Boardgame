@@ -1,0 +1,53 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: jenkins-deploy
+  name: jenkins-deploy
+  namespace: jenkins-cicd
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jenkins-deploy
+  template:
+    metadata:
+      labels:
+        app: jenkins-deploy
+    spec:
+      containers:
+      - image: abhradippaul/devsecops-maven
+        imagePullPolicy: Always
+        name: jenkins
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 250m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+
+---
+            
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: jenkins-deploy
+  name: jenkins-svc
+  namespace: jenkins-cicd
+spec:
+  ports:
+  - nodePort: 30001
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: jenkins-deploy
+  type: NodePort
+
+---
