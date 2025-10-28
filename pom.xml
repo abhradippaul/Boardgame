@@ -120,11 +120,11 @@
 	 <distributionManagement>
         <repository>
             <id>maven-releases</id>
-            <url>http://kelli-superstrict-khalil.ngrok-free.dev/repository/maven-releases</url>
+            <url>http://3.110.131.90/repository/maven-releases</url>
         </repository>
         <snapshotRepository>
             <id>maven-snapshots</id>
-            <url>http://kelli-superstrict-khalil.ngrok-free.dev/repository/maven-snapshots</url>
+            <url>http://3.110.131.90/repository/maven-snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
